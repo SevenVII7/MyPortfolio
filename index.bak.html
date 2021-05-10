@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Portfolio page</title>
+	<link rel="stylesheet" href="css/main.css">
+	<script src="lib/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+	<section id="portfolio">
+		<div class="contant">
+			<div class="top">
+				<div class="title">
+					<h4>前端個人作品集 <span>Portfolio</span></h4>
+				</div>
+				<div class="info">
+					<p>
+						石聽的記長領？電著馬同大外會學正紀子專密影同謝家是重童員一帶大統新結，基不節元認國要離現然前！和現亮賽只雲：給東命！知陸超細的。北王遊然畫的，工手之行民；功較體響時後工高件造今再小官，位重根的找來亞你大變麼星！人子手的：此地於長回原業新要成，我一我就性思學果起有連試重。
+					</p>
+				</div>
+			</div>
+			<div class="portfolio_box">
+				<!-- printWorks  -->
+			</div>
+		</div>
+	</section>
+</body>
+<script>
+
+var works = [];	
+var showBox = $('#portfolio .portfolio_box');
+var worksHtml = ''
+
+function getAllWork(url){
+	var request = new XMLHttpRequest();
+	request.onload = function(){
+		var response = JSON.parse(this.responseText);
+		if(request.status >= 200 && request.status < 400){
+			works = Array.from(response);
+			console.log(response)
+		}
+		printWorks(works);
+	}
+	request.open('GET', url, true);
+	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	request.send(null);
+}
+
+function printWorks(data){
+	for(var i=0; i<12; i++){
+		if(!data[i]){ showBox.html(worksHtml); break; }
+		else{
+			worksHtml += 
+			'<div class="item" data-item-id="' + data[i].id + '">'+
+				'<figure style="background-image: url(\'' + data[i].previewPicture + '\')">'+
+					'<div class="text">'+
+						'<small class="tag">'+
+							'- <span>' + data[i].category + '</span>'+
+						'</small>'+
+						'<p>〉' + data[i].name + '</p>'+
+					'</div>'+
+				'</figure>'+
+			'</div>'
+		}
+	}
+	showBox.html(worksHtml);
+}
+
+getAllWork('data/webData.json');
+
+</script>
+</html>

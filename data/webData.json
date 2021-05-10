@@ -1,0 +1,40 @@
+[{
+    "id" : 1,
+    "name" : "ROG CROSSWORD CHALLENGE",
+    "previewPicture" : "img/b5.jpg",
+    "url" : "https://www.asus.com/microsite/motherboard/AMD-X570/ROG/",
+    "category" : "Other",
+    "pickUp" : true
+},
+{
+    "id" : 2,
+    "name" : "ZADAK at Computex 2019",
+    "previewPicture" : "img/b2.png",
+    "url" : "https://computexgame.zadak.biz/",
+    "category" : "Event Site",
+    "pickUp" : true
+},
+{
+    "id" : 4,
+    "name" : "吉得堡外事部",
+    "previewPicture" : "img/q5.png",
+    "url" : "https://ft.kidcastle.com/",
+    "category" : "Customized Site",
+    "pickUp" : true
+},
+{
+    "id" : 5,
+    "name" : "Merian先機投資",
+    "previewPicture" : "img/q1.png",
+    "url" : "http://www.cgsice.com/Merian/",
+    "category" : "Customized Site",
+    "pickUp" : true
+},
+{
+    "id" : 6,
+    "name" : "騰泰國際五金",
+    "previewPicture" : "img/q3.png",
+    "url" : "https://www.tt-tengtai.com/",
+    "category" : "Customized Site",
+    "pickUp" : true
+}]
