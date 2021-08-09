@@ -41,17 +41,25 @@ p{
     font-size: 1rem;
     letter-spacing: 2px;
 }
+a{
+    text-decoration: none;
+}
 small{
     font-size: .8rem;
     font-weight: 300;
     letter-spacing: .5px;
 }
+
 /* color */
 .txt-sub{
     color: #ff4f19;
 }
 .txt-gary{
     color: #aaa;
+}
+.txt-white{
+    color: #fff;
+    opacity: .85;
 }
 
 
@@ -62,10 +70,15 @@ small{
 /* portfolio area */
 #portfolio{
     width: 100%;
+    // background-color: #202025;
+    background: linear-gradient(276deg, #202030 0%, #202025 100%);
+    background: -moz-linear-gradient(276deg, #202030 0%, #202025 100%);
+    background: -webkit-linear-gradient(276deg, #202030 0%, #202025 100%);
+    background: -o-linear-gradient(276deg, #202030 0%, #202025 100%);
 }
 
 .contant{
-    padding: 50px;
+    padding: 50px 0;
     margin: auto;
     .top{
         width: 100%;
@@ -113,9 +126,12 @@ small{
     display: flex;
     flex-wrap: wrap;
     .item{
-        flex: 0 0 calc(25% - 10px);
-        width: calc(25% - 10px);
-        margin: 5px;
+        // flex: 0 0 calc(25% - 10px);
+        // width: calc(25% - 10px);
+        // margin: 5px;
+        flex: 0 0 25%;
+        width: 25%;
+        margin: 0;
         box-shadow: rgba(0,0,0,.35) 0px 0px 5px;
         display: inline-block;
         cursor: pointer;
@@ -199,7 +215,8 @@ footer{
     z-index: 7;
     display: none;
     &.active{
-        display: block;
+        display: flex;
+        flex: 1;
     }
     &.closing{
         pointer-events: none;
@@ -220,6 +237,19 @@ footer{
         background-color: transparent;
         display: block;
         animation: coverAni .3s both;
+    }
+    .picbox{
+        width: 60%;
+        height: 100%;
+        padding: 30px;
+        overflow: auto;
+        z-index: 6;
+        .pic_item{
+            width: 60%;
+            img{
+                width: 100%;
+            }
+        }
     }
     .box{
         width: 90%;
@@ -242,16 +272,21 @@ footer{
         animation: boxAni .3s both;
         > img{
           width: 100%;
-          margin: 40px 0;
+          margin: 30px 0;
           display: block;
+          box-shadow: rgba(0,0,0,.5) 5px 5px 6px;
         }
         .title{
-            margin: 0 10px 40px;
+            margin: 0 10px 30px;
             h5{
                 margin-bottom: 5px;
             }
             p{
               margin-bottom: 5px;
+            }
+            a{
+                margin-top: 20px;
+                display: block;
             }
             .btn{
               margin-top: 10px;
@@ -269,7 +304,7 @@ footer{
         }
         .lightbox_info{
             max-width: 600px;
-            margin: 40px 10px;
+            margin: 30px 10px;
             .info_title{
               margin-bottom: 10px;
             }

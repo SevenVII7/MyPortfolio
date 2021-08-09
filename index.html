@@ -13,10 +13,10 @@
 		<div class="contant">
 			
 			<div class="top">
-				<div class="title">
+				<div class="title txt-white">
 					<h4>客製化網站 <span>Customized Side</span></h4>
 				</div>
-				<div class="info">
+				<div class="info txt-white">
 					<p>
 						石聽的記長領？電著馬同大外會學正紀子專密影同謝家是重童員一帶大統新結，基不節元認國要離現然前！和現亮賽只雲：給東命！知陸超細的。北王遊然畫的，工手之行民；功較體響時後工高件造今再小官，位重根的找來亞你大變麼星！人子手的：此地於長回原業新要成，我一我就性思學果起有連試重。
 					</p>
@@ -53,20 +53,28 @@
 				closing: ifClosing,
 			}">
 				<div class="cover" @click="closeLightbox()"></div>
+				<!-- <div class="picbox">
+					<div class="pic_item">
+						<img src="img/a1.png" alt="">
+					</div>
+				</div> -->
 				<div class="box">
 					<!-- <div class="close"></div> -->
 					<div class="title">
 						<h5>{{nowShow.name}}</h5>
-						<p class="txt-gray">{{nowShow.category}} / 2020</p>
+						<p class="txt-gray">
+							{{nowShow.category}} / 2020
+						</p>
 						<a
 							:href="nowShow.url"
 							target="_blank"
 							rel="noreferrer noopener"
-							class="btn">
-								前往連結
+							class="txt-sub">
+								前往連結 》
 						</a>
 					</div>
-					<img :src="nowShow.previewPicture" alt="">
+					<img
+						:src="nowShow.previewPicture" alt="">
 					<div class="lightbox_info">
 						<p class="info_title">專案簡介：</p>
 						<p>{{nowShow.info}}</p>
@@ -82,12 +90,19 @@ var vm = new Vue ({
 		body: document.getElementsByTagName('body')[0],
 		ifLightboxOpen: false,
 		ifClosing: false,
-		nowShow: {},
+		nowShow: {
+			"id" : 4,
+			"name" : "Wiho 特樂通",
+			"previewPicture" : "img/q9.png",
+			"url" : "",
+			"category" : "客製化網站",
+			"info" : "這邊放簡介"
+		},
 		works: [
 			{
 				"id" : 1,
 				"name" : "ROG CROSSWORD CHALLENGE",
-				"previewPicture" : "img/b5.jpg",
+				"previewPicture" : "img/b5.png",
 				"url" : "https://www.asus.com/microsite/motherboard/AMD-X570/ROG/",
 				"category" : "互動功能",
 				"info" : "這邊放簡介"
@@ -138,22 +153,6 @@ var vm = new Vue ({
 				"previewPicture" : "img/q1.png",
 				"url" : "http://www.cgsice.com/Merian/",
 				"category" : "客製化網站",
-				"info" : "這邊放簡介"
-			},
-			{
-				"id" : 6,
-				"name" : "騰泰國際五金",
-				"previewPicture" : "img/q3.png",
-				"url" : "https://www.tt-tengtai.com/",
-				"category" : "客製化網站",
-				"info" : "這邊放簡介"
-			},
-			{
-				"id" : 7,
-				"name" : "ASUS ZenGimbal",
-				"previewPicture" : "img/p5.png",
-				"url" : "https://www.asus.com/tw/Mobile/Accessories/All-series/ASUS-ZenGimbal/",
-				"category" : "單頁產品頁面",
 				"info" : "這邊放簡介"
 			},
 			{

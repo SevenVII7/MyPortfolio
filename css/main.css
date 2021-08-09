@@ -51,6 +51,10 @@ p {
   letter-spacing: 2px;
 }
 
+a {
+  text-decoration: none;
+}
+
 small {
   font-size: .8rem;
   font-weight: 300;
@@ -66,16 +70,26 @@ small {
   color: #aaa;
 }
 
+.txt-white {
+  color: #fff;
+  opacity: .85;
+}
+
 /* =================== */
 /* view */
 /* =================== */
 /* portfolio area */
 #portfolio {
   width: 100%;
+  background: -webkit-linear-gradient(174deg, #202030 0%, #202025 100%);
+  background: -o-linear-gradient(174deg, #202030 0%, #202025 100%);
+  background: linear-gradient(276deg, #202030 0%, #202025 100%);
+  background: -webkit-linear-gradient(276deg, #202030 0%, #202025 100%);
+  background: -o-linear-gradient(276deg, #202030 0%, #202025 100%);
 }
 
 .contant {
-  padding: 50px;
+  padding: 50px 0;
   margin: auto;
 }
 
@@ -137,11 +151,11 @@ small {
 
 .portfolio_box .item {
   -webkit-box-flex: 0;
-  -webkit-flex: 0 0 calc(25% - 10px);
-      -ms-flex: 0 0 calc(25% - 10px);
-          flex: 0 0 calc(25% - 10px);
-  width: calc(25% - 10px);
-  margin: 5px;
+  -webkit-flex: 0 0 25%;
+      -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
+  width: 25%;
+  margin: 0;
   -webkit-box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 5px;
           box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 5px;
   display: inline-block;
@@ -242,7 +256,14 @@ footer {
 }
 
 #side_lightbox.active {
-  display: block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 #side_lightbox.closing {
@@ -270,6 +291,22 @@ footer {
   display: block;
   -webkit-animation: coverAni .3s both;
           animation: coverAni .3s both;
+}
+
+#side_lightbox .picbox {
+  width: 60%;
+  height: 100%;
+  padding: 30px;
+  overflow: auto;
+  z-index: 6;
+}
+
+#side_lightbox .picbox .pic_item {
+  width: 60%;
+}
+
+#side_lightbox .picbox .pic_item img {
+  width: 100%;
 }
 
 #side_lightbox .box {
@@ -301,12 +338,14 @@ footer {
 
 #side_lightbox .box > img {
   width: 100%;
-  margin: 40px 0;
+  margin: 30px 0;
   display: block;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 6px;
+          box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 6px;
 }
 
 #side_lightbox .box .title {
-  margin: 0 10px 40px;
+  margin: 0 10px 30px;
 }
 
 #side_lightbox .box .title h5 {
@@ -315,6 +354,11 @@ footer {
 
 #side_lightbox .box .title p {
   margin-bottom: 5px;
+}
+
+#side_lightbox .box .title a {
+  margin-top: 20px;
+  display: block;
 }
 
 #side_lightbox .box .title .btn {
@@ -340,7 +384,7 @@ footer {
 
 #side_lightbox .box .lightbox_info {
   max-width: 600px;
-  margin: 40px 10px;
+  margin: 30px 10px;
 }
 
 #side_lightbox .box .lightbox_info .info_title {
