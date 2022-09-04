@@ -6,82 +6,88 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Portfolio page</title>
 	<link rel="stylesheet" href="css/main.css">
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="lib/vue.js"></script>
 </head>
 <body>
 	<section id="portfolio">
-		<div class="contant">
-			
-			<div class="top">
-				<div class="title txt-white">
-					<h4>客製化網站 <span>Customized Side</span></h4>
+		<div
+			v-for="(d, d_key) in dataset"
+			:key="`${d_key}_data`"
+			class="contant">
+
+			<div class="portfolio_top">
+				<div class="title">
+					<h4 class="nt-serif txt-bold">{{d.titleZh}}</h4>
+					<h5 class="txt-gray txt-mid cg">{{d.titleEn}}</h5>
 				</div>
-				<div class="info txt-white">
-					<p>
-						石聽的記長領？電著馬同大外會學正紀子專密影同謝家是重童員一帶大統新結，基不節元認國要離現然前！和現亮賽只雲：給東命！知陸超細的。北王遊然畫的，工手之行民；功較體響時後工高件造今再小官，位重根的找來亞你大變麼星！人子手的：此地於長回原業新要成，我一我就性思學果起有連試重。
+				<div class="info">
+					<p
+						class="p-16">
+						{{d.info}}
 					</p>
 				</div>
 			</div>
 
 			<div class="portfolio_box">
+				<!-- <div class="item">
+					<p
+						class="p-16 lh-2">
+						{{d.info}}
+					</p>
+				</div> -->
 				<div
-					v-for="(works, key) in works"
-					:key="key"
-					class="item"
-					@click="openLightbox(key)">
-						<figure v-bind:style="{ backgroundImage: 'url(' + works.previewPicture + ')' }">
-							<div class="text">
-								<small class="tag">
-									- <span>{{works.category}}</span>
-								</small>
-								<p>〉{{works.name}}</p>
-							</div>
-						</figure>
+					v-for="(work, work_key) in d.works"
+					:key="`${work_key}_work`"
+					class="item">
+						<div class="pic">
+							<figure
+								:style="{ backgroundImage: 'url(' + work.previewPicture + ')' }">
+							</figure>
+						</div>
+						<div class="text">
+							<!-- <p class="tag">
+								- <span>{{works.category}}</span>
+							</p> -->
+							<h6 class="txt-bold">
+								{{work.name}}
+							</h6>
+							<p
+								v-if="work.techs"
+								class="tech">
+								<span
+									v-for="(tech, tech_key) in work.techs.frontend"
+									:key="`${tech_key}_tech`"
+									class="frontend">
+										{{tech}}
+								</span>
+								<span
+									v-for="(tech, tech_key) in work.techs.backend"
+									:key="`${tech_key}_tech`"
+									class="backend">
+										{{tech}}
+								</span>
+							</p>
+							<p
+								v-if="work.info"
+								class="info">
+								{{work.info}}
+							</p>
+							<a
+								v-if="work.url"
+								:href="work.url"
+								class="p"
+								target="_blank"
+								rel="noopener">
+									Site link
+							</a>
+						</div>
 				</div>
 			</div>
-	
 		</div>
-		
-		<footer>
-			
-		</footer>
 
-		<div
-			id="side_lightbox"
-			:class="{
-				active: ifLightboxOpen,
-				closing: ifClosing,
-			}">
-				<div class="cover" @click="closeLightbox()"></div>
-				<!-- <div class="picbox">
-					<div class="pic_item">
-						<img src="img/a1.png" alt="">
-					</div>
-				</div> -->
-				<div class="box">
-					<!-- <div class="close"></div> -->
-					<div class="title">
-						<h5>{{nowShow.name}}</h5>
-						<p class="txt-gray">
-							{{nowShow.category}} / 2020
-						</p>
-						<a
-							:href="nowShow.url"
-							target="_blank"
-							rel="noreferrer noopener"
-							class="txt-sub">
-								前往連結 》
-						</a>
-					</div>
-					<img
-						:src="nowShow.previewPicture" alt="">
-					<div class="lightbox_info">
-						<p class="info_title">專案簡介：</p>
-						<p>{{nowShow.info}}</p>
-					</div>
-				</div>
-		</div>
 	</section>
+	<footer>
+	</footer>
 </body>
 <script>
 var vm = new Vue ({
@@ -90,72 +96,216 @@ var vm = new Vue ({
 		body: document.getElementsByTagName('body')[0],
 		ifLightboxOpen: false,
 		ifClosing: false,
-		nowShow: {},
-		works: [
+		dataset: [
 			{
-				"id" : 1,
-				"name" : "ROG CROSSWORD CHALLENGE",
-				"previewPicture" : "img/b5.png",
-				"url" : "https://www.asus.com/microsite/motherboard/AMD-X570/ROG/",
-				"category" : "互動功能",
-				"info" : "這邊放簡介"
+				titleZh: '互動功能',
+				titleEn: 'Event Side',
+				info: '石聽的記長領？電著馬同大外會學正紀子專密影同謝家是重童員一帶大統新結，基不節元認國要離現然前！和現亮賽只雲：給東命！知陸超細的。北王遊然畫的。',
+				works: [
+					{
+						"name" : "統一水果牛乳 好好喝農場",
+						"previewPicture" : "img/fur.jpg",
+						"url" : null,
+						"techs" : {
+							"frontend" : ['jQuery', 'PixiJS'],
+							"backend" : null,
+						},
+					},
+					{
+						"name" : "ROG CROSSWORD CHALLENGE",
+						"previewPicture" : "img/b5.png",
+						"url" : null,
+						"techs" : {
+							"frontend" : ['jQuery'],
+							"backend" : null,
+						},
+					},
+					{
+						"name" : "ZADAK at Computex 2019",
+						"previewPicture" : "img/b2.png",
+						"url" : null,
+						"techs" : {
+							"frontend" : ['jQuery'],
+							"backend" : null,
+						},
+					},
+					{
+						"name" : "統一來一客 愛情筷來神助攻",
+						"previewPicture" : "img/nud.jpg",
+						"url" : null,
+						"techs" : {
+							"frontend" : ['jQuery', 'PixiJS'],
+							"backend" : null,
+						},
+					},
+					// {
+					// 	"name" : "ASUS ProArtist AWARDS",
+					// 	"previewPicture" : "img/proart.jpg",
+					// 	"url" : 'https://www.asus.com/campaign/ASUS-ProArtist-Awards-2022/global/index.php',
+					// 	"techs" : ['jQuery'],
+					// },
+				],
 			},
 			{
-				"id" : 2,
-				"name" : "ZADAK at Computex 2019",
-				"previewPicture" : "img/b2.png",
-				"url" : "https://computexgame.zadak.biz/",
-				"category" : "活動網站",
-				"info" : "這邊放簡介"
+				titleZh: '客製化網站',
+				titleEn: 'Customized Side',
+				info: '石聽的記長領？電著馬同大外會學正紀子專密影同謝家是重童員一帶大統新結，基不節元認國要離現然前！和現亮賽只雲：給東命！知陸超細的。北王遊然畫的，工手之行民；功較體響時後工高件造今再小官。',
+				works: [
+					{
+						"name" : "Kirin Engineering",
+						"previewPicture" : "img/kirin.jpg",
+						"url" : "https://kirineng.com.tw/",
+						"techs" : {
+							"frontend" : ['Vue'],
+							"backend" : null,
+						},
+						"info" : "公司資訊展示",
+					},
+					{
+						"name" : "宜蘊醫療",
+						"previewPicture" : "img/nuwa.jpg",
+						"techs" : {
+							"frontend" : ['Vue'],
+							"backend" : null,
+						},
+						"url" : "https://www.nuwacare.com/zh-TW",
+						"info" : "醫療資訊展示及診所線上掛號系統"
+					},
+					{
+						"name" : "Jupiter先機投資",
+						"previewPicture" : "img/q1.png",
+						"url" : "https://www.cgsice.com/jupiter/",
+						"techs" : {
+							"frontend" : ['jQuery', 'D3.js'],
+							"backend" : null,
+						},
+						"info" : "公司及基金資訊展示、基金淨值查詢"
+					},
+					{
+						"name" : "木棉花國際",
+						"previewPicture" : "img/muse.jpg",
+						"url" : "https://www.e-muse.com.tw/zh",
+						"techs" : {
+							"frontend" : ['jQuery'],
+							"backend" : null,
+						},
+						"info" : "公司資訊及代理作品展示",
+					},
+					{
+						"name" : "騰泰國際五金",
+						"previewPicture" : "img/tt.jpg",
+						"techs" : {
+							"frontend" : ['jQuery'],
+							"backend" : null,
+						},
+						"url" : "https://www.tt-tengtai.com/index.php",
+						"info" : "公司及產品資訊展示、線上詢價單功能",
+					},
+					{
+						"name" : "吉的堡外事部線上招募平台",
+						"previewPicture" : "img/q5.png",
+						"techs" : {
+							"frontend" : ['jQuery'],
+							"backend" : null,
+						},
+						"url" : "https://ft.kidcastle.com/",
+						"info" : "外師招募資訊展示及面試預約系統",
+					},
+					// {
+					// 	"name" : "放心初蔬果網",
+					// 	"previewPicture" : "img/q7.png",
+					// 	"techs" : {
+					// 		"frontend" : ['jQuery'],
+					// 		"backend" : null,
+					// 	},
+					// 	"info" : "公司及產品資訊展示、EC系統 (網站現已改版)",
+					// },
+					// {
+					// 	"name" : "ASUS Proart Z490 Series",
+					// 	"previewPicture" : "img/p6.png",
+					// 	"url" : "https://www.asus.com/motherboards-components/motherboards/all-series/proart-z490-creator-10g/",
+					// }
+				],
 			},
 			{
-				"id" : 3,
-				"name" : "宜蘊醫療官網及線上掛號系統",
-				"previewPicture" : "img/q10.png",
-				"url" : "",
-				"category" : "客製化網站",
-				"info" : "這邊放簡介"
+				titleZh: '單頁產品頁面 / 登陸頁面',
+				titleEn: 'Product page / Landing page',
+				info: '石聽的記長領？電著馬同大外會學正紀子專密影同謝家是重童員一帶大統新結。',
+				works: [
+					{
+						"name" : "104 x 全家人才招募頁",
+						"previewPicture" : "img/fm.jpg",
+						"url" : "https://kad.events.104.com.tw/familymart_20220208/",
+						"techs" : {
+							"frontend" : ['Vue'],
+							"backend" : null,
+						},
+					},
+					{
+						"name" : "ASUS Prime Z690 Series",
+						"previewPicture" : "img/prime.jpg",
+						"url" : "https://www.asus.com/Motherboards-Components/Motherboards/PRIME/PRIME-Z690-P-WIFI-CSM/",
+						"techs" : {
+							"frontend" : ['jQuery', 'scrollMagic'],
+							"backend" : null,
+						},
+					},
+					{
+						"name" : "ASUS ProArt B550 CREATOR",
+						"previewPicture" : "img/b550.jpg",
+						"url" : "https://www.asus.com/us/Motherboards-Components/Motherboards/ProArt/ProArt-B550-CREATOR/",
+						"techs" : {
+							"frontend" : ['jQuery'],
+							"backend" : null,
+						},
+					},
+					{
+						"name" : "104 x 新光銀行MA招幕頁",
+						"previewPicture" : "img/shinkong.jpg",
+						"url" : "https://kad.events.104.com.tw/skbank_20220225/",
+						"techs" : {
+							"frontend" : ['Vue'],
+							"backend" : null,
+						},
+					},
+					{
+						"name" : "ASUS ZenGimbal",
+						"previewPicture" : "img/zengimbal.jpg",
+						"url" : "https://www.asus.com/tw/Mobile/Accessories/All-series/ASUS-ZenGimbal/",
+						"techs" : {
+							"frontend" : ['jQuery'],
+							"backend" : null,
+						},
+					},
+					{
+						"name" : "ASUS Proart Z490 Series",
+						"previewPicture" : "img/p6.png",
+						"url" : "https://www.asus.com/motherboards-components/motherboards/all-series/proart-z490-creator-10g/",
+						"techs" : {
+							"frontend" : ['jQuery'],
+							"backend" : null,
+						},
+					},
+					{
+						"name" : "ZenScreen Touch MB16AMT",
+						"previewPicture" : "img/p3.png",
+						"url" : "https://www.asus.com/Displays-Desktops/Monitors/ZenScreen/ZenScreen-Touch-MB16AMT/",
+						"techs" : {
+							"frontend" : ['jQuery'],
+							"backend" : null,
+						},
+					},
+					{
+						"name" : "TUF Gaming K7",
+						"previewPicture" : "img/p1.png",
+						"url" : "https://www.asus.com/Accessories/Keyboards/TUF-Gaming/TUF-Gaming-K7/",
+						"techs" : {
+							"frontend" : ['jQuery'],
+							"backend" : null,
+						},
+					},
+				],
 			},
-			{
-				"id" : 4,
-				"name" : "Wiho 特樂通",
-				"previewPicture" : "img/q9.png",
-				"url" : "",
-				"category" : "客製化網站",
-				"info" : "這邊放簡介"
-			},
-			{
-				"id" : 5,
-				"name" : "怎漾集團官網",
-				"previewPicture" : "img/q8.png",
-				"url" : "",
-				"category" : "客製化網站",
-				"info" : "這邊放簡介"
-			},
-			{
-				"id" : 4,
-				"name" : "吉的堡外事部線上招募平台",
-				"previewPicture" : "img/q5.png",
-				"url" : "https://ft.kidcastle.com/",
-				"category" : "客製化網站",
-				"info" : "這邊放簡介"
-			},
-			{
-				"id" : 5,
-				"name" : "Jupiter木星投資",
-				"previewPicture" : "img/q1.png",
-				"url" : "http://www.cgsice.com/Merian/",
-				"category" : "客製化網站",
-				"info" : "這邊放簡介"
-			},
-			{
-				"id" : 8,
-				"name" : "ASUS Proart Z490 Series",
-				"previewPicture" : "img/p6.png",
-				"url" : "https://www.asus.com/motherboards-components/motherboards/all-series/proart-z490-creator-10g/",
-				"category" : "單頁產品頁面",
-				"info" : "這邊放簡介"
-			}
 		]
 	},
 	methods: {
@@ -172,24 +322,7 @@ var vm = new Vue ({
 				this.ifLightboxOpen = false;
 			}, 300);
 		},
-	// 	getAllWork: function(url){
-	// 		var self = this;
-	// 		var request = new XMLHttpRequest();
-  //           request.onload = function(){
-  //               var response = JSON.parse(this.responseText);
-  //               if(request.status >= 200 && request.status < 400){
-	// 				self.works = Array.from(response);
-	// 				console.log(response)
-  //               }
-  //           }
-  //           request.open('GET', url, true);
-  //           request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  //           request.send(null);
-	// 	}
 	},
-	// mounted: function(){
-	//    this.getAllWork('data/webData.json');
-	// }
 });
 </script>
 </html>
