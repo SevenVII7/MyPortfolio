@@ -18,6 +18,7 @@ html{
     color: #333;
 }
 body{
+    min-width: 320px;
     min-height: 100vh;
     background-color: #fff;
     // background: -webkit-linear-gradient(left top,#f4f4f4,#efeee8);
@@ -76,6 +77,11 @@ small{
     font-weight: 300;
     letter-spacing: .5px;
 }
+@media screen and (max-width: 768px){
+    // .p-16{
+    //     font-size: 14px;
+    // }
+}
 
 
 // font weight
@@ -115,8 +121,11 @@ small{
 
 .contant{
     width: 90%;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 60px auto;
+    @media screen and (max-width: 768px){
+        margin: 30px auto;
+    }
 }
 
 .portfolio_top{
@@ -133,6 +142,11 @@ small{
     .info{
       text-align: center;
       line-height: 2;
+    }
+    @media screen and (max-width: 768px){
+        .info{
+            line-height: 1.5;
+        }
     }
 }
 
@@ -175,6 +189,12 @@ small{
         position: relative;
         &:hover{
             .pic{
+                figure{
+                    &.cover{
+                        animation: ani1 16s -2.5s infinite;
+                        // animation: ani2 .5s 1s both;
+                    }
+                }
                 &::after{
                     background-color: rgba(255, 255, 255, 0);
                 }
@@ -190,6 +210,42 @@ small{
                 background-repeat: no-repeat;
                 background-position: center;
                 position: relative;
+                &.cover{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+                @keyframes ani1 {
+                    0%{
+                        opacity: 1;
+                    }
+                    22%{
+                        opacity: 1;
+                    }
+                    25%{
+                        opacity: 0;
+                    }
+                    50%{
+                        opacity: 0;
+                    }
+                    75%{
+                        opacity: 0;
+                    }
+                    78%{
+                        opacity: 1;
+                    }
+                    100%{
+                        opacity: 1;
+                    }
+                }
+                @keyframes ani2 {
+                    0%{
+                        opacity: 1;
+                    }
+                    100%{
+                        opacity: 0;
+                    }
+                }
             }
             &::after{
                 content: '';
@@ -210,41 +266,43 @@ small{
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            user-select: none;
+            // >h6{
+            //     margin: 5px 0;
+            // }
             .tech{
-                margin-top: 5px;
-                span{
-                    margin-right: 10px;
-                    display: inline-block;
+                width: 100%;
+                >span{
+                    width: 100%;
+                    margin-top: 10px;
+                    display: block;
                     position: relative;
-                    &.frontend::before{
+                    &::before{
                         content: '';
                         width: 5px;
                         height: 5px;
-                        margin-right: 3px;
+                        margin-top: 8px;
+                        margin-right: 5px;
                         border-radius: 5px;
                         background-color: $color-prime;
                         display: inline-block;
-                        vertical-align: middle;
+                        vertical-align: top;
                     }
-                    &.backend::before{
-                        content: '';
-                        width: 5px;
-                        height: 5px;
-                        margin-right: 3px;
-                        border-radius: 5px;
-                        background-color: #0078df;
+                    .in{
+                        width: calc(100% - 12px);
                         display: inline-block;
-                        vertical-align: middle;
+                        vertical-align: top;
+                        opacity: .7;
                     }
                 }
             }
             .info{
-                margin-top: 5px;
-                opacity: .7;
+                margin-top: 10px;
             }
             a{
                 width: 100%;
-                margin-top: 10px;
+                margin-top: 15px;
+                // margin: 10px 0;
                 padding: 3px 10px;
                 text-align: center;
                 border: 1px solid #777;
@@ -256,6 +314,21 @@ small{
                     color: $color-prime;
                 }
             }
+        }
+    }
+    @media screen and (max-width: 768px){
+        margin: 0;
+        padding-top: 0;
+        &::before,
+        &::after{
+            display: none;
+        }
+        .item{
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 7px rgba(0,0,0,.2);
         }
     }
 }

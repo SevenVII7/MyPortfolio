@@ -10,6 +10,7 @@
 </head>
 <body>
 	<section id="portfolio">
+		
 		<div
 			v-for="(d, d_key) in dataset"
 			:key="`${d_key}_data`"
@@ -22,55 +23,46 @@
 				</div>
 				<div class="info">
 					<p
-						class="p-16">
-						{{d.info}}
+						class="p-16"
+						v-html="d.info">
 					</p>
 				</div>
 			</div>
 
 			<div class="portfolio_box">
-				<!-- <div class="item">
-					<p
-						class="p-16 lh-2">
-						{{d.info}}
-					</p>
-				</div> -->
 				<div
 					v-for="(work, work_key) in d.works"
 					:key="`${work_key}_work`"
 					class="item">
 						<div class="pic">
 							<figure
+								:style="{ backgroundImage: 'url(' + work.previewPicture2 + ')' }">
+							</figure>
+							<figure
+								class="cover"
 								:style="{ backgroundImage: 'url(' + work.previewPicture + ')' }">
 							</figure>
 						</div>
 						<div class="text">
-							<!-- <p class="tag">
-								- <span>{{works.category}}</span>
-							</p> -->
+							
 							<h6 class="txt-bold">
 								{{work.name}}
 							</h6>
 							<p
-								v-if="work.techs"
-								class="tech">
-								<span
-									v-for="(tech, tech_key) in work.techs.frontend"
-									:key="`${tech_key}_tech`"
-									class="frontend">
-										{{tech}}
-								</span>
-								<span
-									v-for="(tech, tech_key) in work.techs.backend"
-									:key="`${tech_key}_tech`"
-									class="backend">
-										{{tech}}
-								</span>
-							</p>
-							<p
 								v-if="work.info"
 								class="info">
 								{{work.info}}
+							</p>
+							<p
+								v-if="work.techs"
+								class="tech">
+								<span
+									v-for="(tech, tech_key) in work.techs"
+									:key="`${tech_key}_tech`">
+										<span class="in">
+											{{tech}}
+										</span>
+								</span>
 							</p>
 							<a
 								v-if="work.url"
@@ -80,6 +72,7 @@
 								rel="noopener">
 									Site link
 							</a>
+							
 						</div>
 				</div>
 			</div>
@@ -89,240 +82,5 @@
 	<footer>
 	</footer>
 </body>
-<script>
-var vm = new Vue ({
-	el: "#portfolio",
-	data: {
-		body: document.getElementsByTagName('body')[0],
-		ifLightboxOpen: false,
-		ifClosing: false,
-		dataset: [
-			{
-				titleZh: '互動功能',
-				titleEn: 'Event Side',
-				info: '石聽的記長領？電著馬同大外會學正紀子專密影同謝家是重童員一帶大統新結，基不節元認國要離現然前！和現亮賽只雲：給東命！知陸超細的。北王遊然畫的。',
-				works: [
-					{
-						"name" : "統一水果牛乳 好好喝農場",
-						"previewPicture" : "img/fur.jpg",
-						"url" : null,
-						"techs" : {
-							"frontend" : ['jQuery', 'PixiJS'],
-							"backend" : null,
-						},
-					},
-					{
-						"name" : "ROG CROSSWORD CHALLENGE",
-						"previewPicture" : "img/b5.png",
-						"url" : null,
-						"techs" : {
-							"frontend" : ['jQuery'],
-							"backend" : null,
-						},
-					},
-					{
-						"name" : "ZADAK at Computex 2019",
-						"previewPicture" : "img/b2.png",
-						"url" : null,
-						"techs" : {
-							"frontend" : ['jQuery'],
-							"backend" : null,
-						},
-					},
-					{
-						"name" : "統一來一客 愛情筷來神助攻",
-						"previewPicture" : "img/nud.jpg",
-						"url" : null,
-						"techs" : {
-							"frontend" : ['jQuery', 'PixiJS'],
-							"backend" : null,
-						},
-					},
-					// {
-					// 	"name" : "ASUS ProArtist AWARDS",
-					// 	"previewPicture" : "img/proart.jpg",
-					// 	"url" : 'https://www.asus.com/campaign/ASUS-ProArtist-Awards-2022/global/index.php',
-					// 	"techs" : ['jQuery'],
-					// },
-				],
-			},
-			{
-				titleZh: '客製化網站',
-				titleEn: 'Customized Side',
-				info: '石聽的記長領？電著馬同大外會學正紀子專密影同謝家是重童員一帶大統新結，基不節元認國要離現然前！和現亮賽只雲：給東命！知陸超細的。北王遊然畫的，工手之行民；功較體響時後工高件造今再小官。',
-				works: [
-					{
-						"name" : "Kirin Engineering",
-						"previewPicture" : "img/kirin.jpg",
-						"url" : "https://kirineng.com.tw/",
-						"techs" : {
-							"frontend" : ['Vue'],
-							"backend" : null,
-						},
-						"info" : "公司資訊展示",
-					},
-					{
-						"name" : "宜蘊醫療",
-						"previewPicture" : "img/nuwa.jpg",
-						"techs" : {
-							"frontend" : ['Vue'],
-							"backend" : null,
-						},
-						"url" : "https://www.nuwacare.com/zh-TW",
-						"info" : "醫療資訊展示及診所線上掛號系統"
-					},
-					{
-						"name" : "Jupiter先機投資",
-						"previewPicture" : "img/q1.png",
-						"url" : "https://www.cgsice.com/jupiter/",
-						"techs" : {
-							"frontend" : ['jQuery', 'D3.js'],
-							"backend" : null,
-						},
-						"info" : "公司及基金資訊展示、基金淨值查詢"
-					},
-					{
-						"name" : "木棉花國際",
-						"previewPicture" : "img/muse.jpg",
-						"url" : "https://www.e-muse.com.tw/zh",
-						"techs" : {
-							"frontend" : ['jQuery'],
-							"backend" : null,
-						},
-						"info" : "公司資訊及代理作品展示",
-					},
-					{
-						"name" : "騰泰國際五金",
-						"previewPicture" : "img/tt.jpg",
-						"techs" : {
-							"frontend" : ['jQuery'],
-							"backend" : null,
-						},
-						"url" : "https://www.tt-tengtai.com/index.php",
-						"info" : "公司及產品資訊展示、線上詢價單功能",
-					},
-					{
-						"name" : "吉的堡外事部線上招募平台",
-						"previewPicture" : "img/q5.png",
-						"techs" : {
-							"frontend" : ['jQuery'],
-							"backend" : null,
-						},
-						"url" : "https://ft.kidcastle.com/",
-						"info" : "外師招募資訊展示及面試預約系統",
-					},
-					// {
-					// 	"name" : "放心初蔬果網",
-					// 	"previewPicture" : "img/q7.png",
-					// 	"techs" : {
-					// 		"frontend" : ['jQuery'],
-					// 		"backend" : null,
-					// 	},
-					// 	"info" : "公司及產品資訊展示、EC系統 (網站現已改版)",
-					// },
-					// {
-					// 	"name" : "ASUS Proart Z490 Series",
-					// 	"previewPicture" : "img/p6.png",
-					// 	"url" : "https://www.asus.com/motherboards-components/motherboards/all-series/proart-z490-creator-10g/",
-					// }
-				],
-			},
-			{
-				titleZh: '單頁產品頁面 / 登陸頁面',
-				titleEn: 'Product page / Landing page',
-				info: '石聽的記長領？電著馬同大外會學正紀子專密影同謝家是重童員一帶大統新結。',
-				works: [
-					{
-						"name" : "104 x 全家人才招募頁",
-						"previewPicture" : "img/fm.jpg",
-						"url" : "https://kad.events.104.com.tw/familymart_20220208/",
-						"techs" : {
-							"frontend" : ['Vue'],
-							"backend" : null,
-						},
-					},
-					{
-						"name" : "ASUS Prime Z690 Series",
-						"previewPicture" : "img/prime.jpg",
-						"url" : "https://www.asus.com/Motherboards-Components/Motherboards/PRIME/PRIME-Z690-P-WIFI-CSM/",
-						"techs" : {
-							"frontend" : ['jQuery', 'scrollMagic'],
-							"backend" : null,
-						},
-					},
-					{
-						"name" : "ASUS ProArt B550 CREATOR",
-						"previewPicture" : "img/b550.jpg",
-						"url" : "https://www.asus.com/us/Motherboards-Components/Motherboards/ProArt/ProArt-B550-CREATOR/",
-						"techs" : {
-							"frontend" : ['jQuery'],
-							"backend" : null,
-						},
-					},
-					{
-						"name" : "104 x 新光銀行MA招幕頁",
-						"previewPicture" : "img/shinkong.jpg",
-						"url" : "https://kad.events.104.com.tw/skbank_20220225/",
-						"techs" : {
-							"frontend" : ['Vue'],
-							"backend" : null,
-						},
-					},
-					{
-						"name" : "ASUS ZenGimbal",
-						"previewPicture" : "img/zengimbal.jpg",
-						"url" : "https://www.asus.com/tw/Mobile/Accessories/All-series/ASUS-ZenGimbal/",
-						"techs" : {
-							"frontend" : ['jQuery'],
-							"backend" : null,
-						},
-					},
-					{
-						"name" : "ASUS Proart Z490 Series",
-						"previewPicture" : "img/p6.png",
-						"url" : "https://www.asus.com/motherboards-components/motherboards/all-series/proart-z490-creator-10g/",
-						"techs" : {
-							"frontend" : ['jQuery'],
-							"backend" : null,
-						},
-					},
-					{
-						"name" : "ZenScreen Touch MB16AMT",
-						"previewPicture" : "img/p3.png",
-						"url" : "https://www.asus.com/Displays-Desktops/Monitors/ZenScreen/ZenScreen-Touch-MB16AMT/",
-						"techs" : {
-							"frontend" : ['jQuery'],
-							"backend" : null,
-						},
-					},
-					{
-						"name" : "TUF Gaming K7",
-						"previewPicture" : "img/p1.png",
-						"url" : "https://www.asus.com/Accessories/Keyboards/TUF-Gaming/TUF-Gaming-K7/",
-						"techs" : {
-							"frontend" : ['jQuery'],
-							"backend" : null,
-						},
-					},
-				],
-			},
-		]
-	},
-	methods: {
-		openLightbox(num) {
-			this.ifLightboxOpen = true;
-			this.nowShow = this.works[num];
-			this.body.classList.add('overflow');
-		},
-		closeLightbox() {
-			this.body.classList.remove('overflow');
-			this.ifClosing = true;
-			setTimeout(() => {
-				this.ifClosing = false;
-				this.ifLightboxOpen = false;
-			}, 300);
-		},
-	},
-});
-</script>
+<script src="js/index.js"></script>
 </html>
