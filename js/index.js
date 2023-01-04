@@ -17,6 +17,7 @@ var vm = new Vue ({
 						"url" : 'https://www.trplus.com.tw/_ui/pages/paint_service/service_paint.html',
 						"techs" : [
 							'色彩預覽功能使用jQuery處理使用者互動，搭配PixiJS渲染canvas畫面',
+							'local storage儲存使用者加入關注清單的油漆資料',
 							'購物車部分以library方式引入vue.js處理資料，並使用Axios串接廠商提供的api',
 						],
 						"info" : "油漆配色模擬服務，提供多種場景供挑選參考，並可直接計算預估用量及下單"
@@ -76,23 +77,25 @@ var vm = new Vue ({
 						"info" : "期間限定小遊戲功能，插入在客戶產品頁面中"
 					},
 					{
-						"name" : "ASUS 產品頁面系列 (以Prime Z690一案介紹)",
+						"name" : "ASUS 產品頁面系列 (連結以Prime Z690一案為例)",
 						"previewPicture" : "img/prime.jpg",
 						"previewPicture2" : "img/prime2.jpg",
 						"url" : "https://www.asus.com/Motherboards-Components/Motherboards/PRIME/PRIME-Z690-P-WIFI-CSM/",
 						"techs" : [
 							'使用ScrollMagic + TweenMax製作滾動動畫效果',
+							'部分專案會使用比較大量的CSS動畫效果'
 						],
 						"info" : "產品規格展示"
 					},
 					{
 						"name" : "104 人才招募頁系列",
 						"previewPicture" : "img/fm.jpg",
+						"previewPicture2" : "img/wunwa.jpg",
 						"url" : "https://kad.events.104.com.tw/familymart_20220208/",
 						"techs" : [
-							'jQuery',
-							'PixiJS'
+							'Vue 2.0開發，為顧及SEO，使用Prerender SPA Plugin在輸出時將內容事先渲染到HTML上',
 						],
+						"info" : "招募資訊展示"
 					},
 					// {
 					// 	"name" : "木棉花國際官網",
